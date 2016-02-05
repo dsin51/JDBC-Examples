@@ -1,7 +1,7 @@
 package com.training.daos;
 
 import java.sql.*;
-import java.util.List;
+import java.util.*;
 import com.training.ifaces.DAO;
 import com.training.utils.SqlConnection;
 import com.training.entity.Customer;
@@ -77,20 +77,64 @@ public class CustomerDAO implements DAO<Customer> {
 
 	@Override
 	public List<Customer> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+
+		String sql = "Select * from Customer";
+		ArrayList<Customer> custlist = new ArrayList<Customer>();
+		Customer cust=null;
+		
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next())
+			{
+				int custid = rs.getInt("Customerid");
+				String name = rs.getString("Customername");
+				String email = rs.getString("email");
+				int phone = rs.getInt("handphone");
+				
+				cust = new Customer(custid,name,email,phone);
+				custlist.add(cust);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return custlist;
 	}
 
 	@Override
 	public int update(int key) {
-		// TODO Auto-generated method stub
+
+		String sql1 = "update customer set email = ? where customerid = key";
+		String sql2 = "update customer set handphone = ? where customerid = key";
+		int rowsUpdated = 0;
+		
+		try {
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		return 0;
 	}
 
 	@Override
 	public int delete(int key) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		String sql = "Delete from Customer where customerid = ?";
+		int rowsDeleted = 0;
+		try {
+			
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, key);
+			rowsDeleted = pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return rowsDeleted;
 	}
 
 }
