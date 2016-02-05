@@ -53,6 +53,13 @@ public class Customer {
 		
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", email=" + email
+				+ ", handPhone=" + handPhone + "]";
+	}
+
 	public String showCustomer() {
 		
 		String cust = customerId + ":" + customerName + ":" + email + ":" + handPhone;

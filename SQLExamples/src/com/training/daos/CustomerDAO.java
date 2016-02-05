@@ -48,9 +48,31 @@ public class CustomerDAO implements DAO<Customer> {
 	}
 
 	@Override
-	public Customer find() {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer find(int key) {
+
+		String sql = "Select * from Customer where customerid = ?";
+		Customer cust = null;	
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, key);
+			
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next())
+			{
+				String name = rs.getString("Customername");
+				String email = rs.getString("email");
+				int phone = rs.getInt("handphone");
+				
+				cust = new Customer(key,name,email,phone);
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return cust;
 	}
 
 	@Override

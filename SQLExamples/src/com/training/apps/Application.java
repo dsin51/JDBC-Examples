@@ -10,10 +10,19 @@ public class Application {
 
 //		System.out.println(SqlConnection.getOracleConnection());
 		
-		Customer cust = new Customer(102,"Rajesh","aaa@pqr.com",12345);
-		CustomerDAO dao = new CustomerDAO();
-		int rowAdded = dao.add(cust);
-		System.out.println(rowAdded+" row[s] added.");
+		
+		/*
+		 * Inserting values into Customer table
+		 */
+//		Customer cust = new Customer(102,"Rajesh","aaa@pqr.com",12345);
+//		CustomerDAO dao = new CustomerDAO();
+//		int rowAdded = dao.add(cust);
+//		System.out.println(rowAdded+" row[s] added.");
+		
+		
+		CustomerDAO dao1 = new CustomerDAO();
+		Customer details = dao1.find(102);
+		System.out.println(details);
 		
 	}
 
