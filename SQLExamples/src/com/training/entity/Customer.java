@@ -6,7 +6,7 @@ public class Customer {
 	private int customerId;
 	private String customerName;
 	private String email;
-	private long handPhone;
+	private int handPhone;
 	
 	
 	public Customer() {
@@ -15,19 +15,15 @@ public class Customer {
 		
 	}
 	
-	public Customer(int customerId, String customerName, String email, long handPhone)
+	public Customer(int customerId, String customerName, String email, int handPhone)
 	//throws RangeCheckException
 	{
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.email = email;
-		if (handPhone > 9999999999L || handPhone < 1111111111) {
-			//throw new RangeCheckException(handPhone);
-		}
-		else {
-			this.handPhone = handPhone;
-		}
+		this.handPhone = handPhone;
+		
 	}
 
 	public int getCustomerId() {
@@ -48,20 +44,13 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public long getHandPhone() {
+	public int getHandPhone() {
 		return handPhone;
 	}
-	public void setHandPhone(long handPhone) {
-		if (handPhone > 9999999999L) {
-//			try {
-//				throw new RangeCheckException(handPhone);
-//			}catch(RangeCheckException e) {
-//				System.out.println(e);
-//			};
-		}
-		else {
+	public void setHandPhone(int handPhone) {
+	
 			this.handPhone = handPhone;
-		}
+		
 	}
 	
 	public String showCustomer() {
