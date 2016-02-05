@@ -53,6 +53,16 @@ public class Application {
 			System.out.println(rowsDeleted+" row[s] deleted successfully");
 		}
 		
+		
+		System.out.println("~~~~~~~UPDATION~~~~~~~~");
+		System.out.println("Enter the customer id to update the values:");
+		int key = sin.nextInt();
+		dao1.update(key);
+		
+		System.out.println("Update table of all customers:");
+		List<Customer> list1 =  dao1.findAll();
+		for (Customer i : list1) 
+			System.out.println(i); 
 	}
 
 }

@@ -105,17 +105,48 @@ public class CustomerDAO implements DAO<Customer> {
 	@Override
 	public int update(int key) {
 
-		String sql1 = "update customer set email = ? where customerid = key";
-		String sql2 = "update customer set handphone = ? where customerid = key";
+		System.out.println("Select the coloumn to be updated:");
+		System.out.println("1.email\n2.handPhone");
+		
 		int rowsUpdated = 0;
 		
-		try {
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+		Scanner sin = new Scanner(System.in);
+		int choice = sin.nextInt();
+		
+		switch (choice) {
+		case 1:
+			System.out.println("Enter value:");
+			String value = sin.next();
+			String sql1 = "update customer set email="+"'"+value+"'"+" where customerid = ?";
+			try {
+				PreparedStatement pstmt1 = con.prepareStatement(sql1);
+				pstmt1.setInt(1, key);
+				rowsUpdated = pstmt1.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			break;
+
+		case 2:
+			System.out.println("Enter value:");
+			int phone = sin.nextInt();
+			String sql2 = "update customer set handphone="+phone+" where customerid = ?";
+			try {
+				PreparedStatement pstmt2 = con.prepareStatement(sql2);
+				pstmt2.setInt(1, key);
+				rowsUpdated = pstmt2.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			break;
+		default:
+			System.out.println("Invalid Input!!");
+			break;
 		}
 		
-		return 0;
+		return rowsUpdated;
 	}
 
 	@Override
