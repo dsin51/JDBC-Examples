@@ -16,10 +16,10 @@ public class Application {
 		/*
 		 * Inserting values into Customer table
 		 */
-//		Customer cust = new Customer(102,"Rajesh","aaa@pqr.com",12345);
-//		CustomerDAO dao = new CustomerDAO();
-//		int rowAdded = dao.add(cust);
-//		System.out.println(rowAdded+" row[s] added.");
+		Customer cust = new Customer(102,"Rajesh","aaa@pqr.com",12345);
+		CustomerDAO dao = new CustomerDAO();
+		int rowAdded = dao.add(cust);
+		System.out.println(rowAdded+" row[s] added.");
 		
 		
 		CustomerDAO dao1 = new CustomerDAO();
@@ -42,7 +42,7 @@ public class Application {
 		
 		
 		System.out.println("~~~Deletion~~~");
-		System.out.println("Enter the customer id to be deleted");
+		System.out.println("Enter the customer id to be deleted(give 102 for testing)");
 		Scanner sin = new Scanner(System.in);
 		int custid = sin.nextInt();
 		
